@@ -1,0 +1,12 @@
+.dashboard-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+.dashboard-image {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+}
