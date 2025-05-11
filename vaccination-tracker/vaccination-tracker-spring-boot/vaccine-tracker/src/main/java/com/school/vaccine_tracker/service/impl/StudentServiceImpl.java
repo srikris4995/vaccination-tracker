@@ -102,7 +102,10 @@ public class StudentServiceImpl implements StudentService {
         Workbook workbook = new XSSFWorkbook();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
-            Sheet sheet = workbook.createSheet("Vaccination Report");
+            String timestamp = java.time.LocalDateTime.now()
+                    .format(java.time.format.DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+            String sheetName = "vaccination_report_" + timestamp;
+            Sheet sheet = workbook.createSheet(sheetName);
 
             // Create header row
             Row headerRow = sheet.createRow(0);
