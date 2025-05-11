@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { bulkUploadStudents } from '../services/StudentService';
+import { bulkUploadStudents } from '../../services/StudentService.jsx';
 
 const BulkuploadComponent = () => {
     const [file, setFile] = useState(null);

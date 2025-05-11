@@ -15,11 +15,10 @@ public class Student{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "class_name")
-    private String className;
     @Column(name = "name")
     private String name;
+    @Column(name = "class_name")
+    private String className;
     @Column(name = "vaccination_status")
     private boolean vaccinationStatus;
     @Column(name = "vaccination_date")

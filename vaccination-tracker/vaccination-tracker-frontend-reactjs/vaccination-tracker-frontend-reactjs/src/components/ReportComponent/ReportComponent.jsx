@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { downloadVaccinationReport } from "../services/StudentService";
+import { downloadVaccinationReport } from "../../services/StudentService";
 import BulkuploadComponent from "./BulkuploadComponent";
+import './ReportComponent.css'; // Import the CSS file for styling
 
 
 const ReportComponent = () => {
@@ -12,7 +13,7 @@ const ReportComponent = () => {
                 alert("Please select both start and end dates.");
                 return;
             }
-    
+
             downloadVaccinationReport(startDate, endDate)
                 .then((response) => {
                     // Create a link to download the file
@@ -62,7 +63,7 @@ const ReportComponent = () => {
             <BulkuploadComponent/>
         </div>
         </div>
-       
+            <img src='/report.jpg' alt="Vaccination" className="object-fit-cover border rounded" />
         </>
     )
     }

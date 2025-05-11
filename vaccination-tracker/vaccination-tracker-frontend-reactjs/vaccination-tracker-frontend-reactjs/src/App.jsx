@@ -1,14 +1,14 @@
 import './App.css'
-import FooterComponent from './components/FooterComponent'
-import HeaderComponent from './components/HeaderComponent'
-import ListStudentComponents from './components/ListStudentComponent'
+import FooterComponent from './components/FooterComponent/FooterComponent.jsx'
+import HeaderComponent from './components/HeaderComponent/HeaderComponent.jsx'
+import ListStudentComponents from './components/ListStudentComponent/ListStudentComponent.jsx'
 import { BrowserRouter, Route, Routes,useLocation   } from 'react-router-dom'
 import StudentComponent from './components/StudentComponent'
-import LoginComponent from './components/LoginComponent'
+import LoginComponent from './components/LoginComponent/LoginComponent.jsx'
 import ProtectedRoute from './components/ProtectedRoute'
 import DashboardComponent from './components/DashboardComponent/DashboardComponent'
-import HomeComponent from './components/HomeComponent'
-import ReportComponent from './components/ReportComponent'
+import HomeComponent from './components/HomeComponent/HomeComponent'
+import ReportComponent from './components/ReportComponent/ReportComponent.jsx'
 
 function App() {
 
