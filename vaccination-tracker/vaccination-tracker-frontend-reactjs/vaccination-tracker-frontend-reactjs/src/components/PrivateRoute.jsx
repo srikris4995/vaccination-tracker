@@ -2,9 +2,9 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { getToken } from "../services/AuthService";
 
-function ProtectedRoute({ children }) {
-    const token = getToken(); // Check if the token exists
+function PrivateRoute({ children }) {
+    const token = getToken(); // Retrieve the token from localStorage or AuthService
     return token ? children : <Navigate to="/" />;
 }
 
-export default ProtectedRoute;
+export default PrivateRoute;
