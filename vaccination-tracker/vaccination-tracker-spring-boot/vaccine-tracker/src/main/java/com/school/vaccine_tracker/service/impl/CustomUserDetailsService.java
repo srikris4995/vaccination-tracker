@@ -3,6 +3,7 @@ package com.school.vaccine_tracker.service.impl;
 import com.school.vaccine_tracker.entity.User;
 import com.school.vaccine_tracker.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
-                Collections.emptyList() // roles/authorities
+                Collections.singletonList(new SimpleGrantedAuthority(user.getRole())) // roles/authorities
         );
     }
 }

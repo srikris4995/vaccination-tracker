@@ -1,5 +1,6 @@
 package com.school.vaccine_tracker.filter;
 
+import com.school.vaccine_tracker.service.impl.CustomUserDetailsService;
 import com.school.vaccine_tracker.util.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -20,9 +21,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtil jwtUtil;
     @Autowired
-    private UserDetailsService userDetailsService;
+    private CustomUserDetailsService userDetailsService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
+        //this codition is to bypass jwt for this two urls
+        String requestPath = request.getRequestURI();
+        if (requestPath.equals("/api/auth/login") || requestPath.equals("/api/auth/register")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         final String authHeader = request.getHeader("Authorization");
         String username = null;
         String token = null;
