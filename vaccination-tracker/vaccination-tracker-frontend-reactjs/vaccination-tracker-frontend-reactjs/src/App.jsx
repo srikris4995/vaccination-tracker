@@ -10,6 +10,7 @@ import DashboardComponent from './components/DashboardComponent/DashboardCompone
 import HomeComponent from './components/HomeComponent/HomeComponent'
 import ReportComponent from './components/ReportComponent/ReportComponent.jsx'
 import PrivateRoute from "./components/PrivateRoute.jsx";
+import RegisterComponent  from "./components/RegisterComponent/RegisterComponent.jsx";
 
 function App() {
 
@@ -22,12 +23,14 @@ function App() {
 
 function Main() {
     const location = useLocation();
-    const isLoginPage = location.pathname === "/";
+    const isLoginPage = location.pathname === "/" || location.pathname === "/register";
     return (
         <>
             {!isLoginPage && <HeaderComponent/>}
             <Routes>
                 <Route path="/" element={<LoginComponent/>}/>
+                <Route path="/register" element={<RegisterComponent />} />
+
                 <Route
                     path="/*"
                     element={
