@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {login, setToken} from "../../services/AuthService.jsx";
 import './LoginComponent.css';
 
 function LoginComponent() {
@@ -9,16 +10,19 @@ function LoginComponent() {
 
     const navigate = useNavigate();
 
-    function handleLogin(event) {
+    async function handleLogin(event) {
         event.preventDefault();
-        localStorage.setItem("authenticated", true);
-        // Perform login logic here
-        console.log("Logging in with:", username, password);
-        // Redirect to the home page after successful login
-        if (username === "admin" && password === "admin") {
+        try {
+            //call the login API
+            const response = await login({username, password});
+            //store the token
+            setToken(response.data.token);
+            //redirect to the home page
             navigate("/home");
-        } else {
+        } catch (err) {
+            //handle error
             setError("Invalid username or password");
+            console.error("Login failed:", err);
         }
     };
 
@@ -29,14 +33,22 @@ function LoginComponent() {
             <form className="login-form" onSubmit={handleLogin}>
                 <div>
                     <label>Username</label>
-                    <input type="text" className="login-input-field" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                    <input type="text" className="login-input-field" value={username}
+                           onChange={(e) => setUsername(e.target.value)} required/>
                 </div>
                 <div>
                     <label>Password</label>
-                    <input type="password" className="login-input-field" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                    <input type="password" className="login-input-field" value={password}
+                           onChange={(e) => setPassword(e.target.value)} required/>
                 </div>
                 <button type="submit" className="login-button">Login</button>
             </form>
+            <button
+                className="text-center"
+                onClick={() => navigate("/register")}
+            >
+                Register
+            </button>
         </div>
     );
 }
